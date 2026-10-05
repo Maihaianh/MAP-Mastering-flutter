@@ -25,14 +25,17 @@ jobs:
         with:
           channel: 'stable'
 
+      - name: Grant execute permission for gradlew
+        run: chmod +x android/gradlew
+
       - name: Install dependencies
         run: flutter pub get
 
       - name: Build APK
-        run: flutter build apk --release
+        run: flutter build apk --debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: MAP-Mastering-flutter-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: build/app/outputs/flutter-apk/app-debug.apk
